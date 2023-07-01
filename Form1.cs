@@ -20,12 +20,12 @@ namespace Passo_Bot
         private void button1_Click(object sender, EventArgs e)
         {
 
-
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.passo.com.tr/en/login");
 
             try
             {
-                IWebDriver driver = new ChromeDriver();
-                driver.Navigate().GoToUrl("https://www.passo.com.tr/en/login");
+                
 
                 IWebElement emailInput = driver.FindElement(By.CssSelector("input[autocomplete='username']"));//kullanýcý adý ve þifreyi al
                 IWebElement pass = driver.FindElement(By.CssSelector("input[autocomplete='current-password']"));
@@ -33,7 +33,7 @@ namespace Passo_Bot
 
                 emailInput.SendKeys(textBox1.Text);
                 pass.SendKeys(textBox2.Text);
-                //birkaç deneme
+                
                 MessageBox.Show("Captcha'yý Tamamladýktan Sonra 'Tamam' Tuþuna Basýn");//kullanýcýnýn captchayý tamamlamasýný bekle
                 button.Click();
 
@@ -44,10 +44,9 @@ namespace Passo_Bot
                 jsExecutor.ExecuteScript("window.scrollBy(0, 500);");
 
 
-                Thread.Sleep(4000);
+                Thread.Sleep(2000);
 
-                //WebElement dism = (WebElement)driver.FindElement(By.CssSelector("a.cc-btn.cc-dismiss[aria-label='dismiss cookie message']"));
-                //dism.Click();
+                
 
 
 
@@ -57,21 +56,20 @@ namespace Passo_Bot
                 satin_al.Click();
 
 
+                //BU KISIMA KADAR KOD ÇALIÞIYOR 01.07.23
+                
+                
+                jsExecutor.ExecuteScript("window.scrollBy(0, -100);");
 
 
+                //Thread.Sleep(500);
 
 
+                //IWebElement comboBox = driver.FindElement(By.CssSelector("select.form-control"));
 
 
-               
-                Thread.Sleep(500);
-
-
-                IWebElement comboBox = driver.FindElement(By.CssSelector("select.form-control"));
-
-               
-                SelectElement selectElement = new SelectElement(comboBox);
-                selectElement.SelectByText("General Sales");
+                //SelectElement selectElement = new SelectElement(comboBox);
+                //selectElement.SelectByText("General Sales");
 
 
 
@@ -79,7 +77,8 @@ namespace Passo_Bot
 
             catch(Exception ex)
             {
-                Application.Exit();
+                driver.Quit();
+                Application.Exit(); 
                 
             }
 
