@@ -22,10 +22,10 @@ namespace Passo_Bot
 
             IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://www.passo.com.tr/en/login");
-
+            /*
             try
             {
-                
+              */  
 
                 IWebElement emailInput = driver.FindElement(By.CssSelector("input[autocomplete='username']"));//kullanýcý adý ve þifreyi al
                 IWebElement pass = driver.FindElement(By.CssSelector("input[autocomplete='current-password']"));
@@ -38,13 +38,13 @@ namespace Passo_Bot
                 button.Click();
 
                 driver.Navigate().GoToUrl(textBox3.Text);
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
 
                 IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
                 jsExecutor.ExecuteScript("window.scrollBy(0, 500);");
 
 
-                Thread.Sleep(2000);
+                Thread.Sleep(4000);
 
                 
 
@@ -59,28 +59,49 @@ namespace Passo_Bot
                 //BU KISIMA KADAR KOD ÇALIÞIYOR 01.07.23
                 
                 
-                jsExecutor.ExecuteScript("window.scrollBy(0, -100);");
+                
+
+                IJavaScriptExecutor javaN = (IJavaScriptExecutor)driver;
+                javaN.ExecuteScript("window.scrollBy(0, 500);");
 
 
-                //Thread.Sleep(500);
+                Thread.Sleep(1000);
+
+            // Dropdown elementini bulma
+            IWebElement dropdown = driver.FindElement(By.CssSelector(".form-control"));
+
+            // Dropdown'ý açmak için týkla
+            dropdown.Click();
+
+            // Bekleme yap
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            By optionSelector = By.CssSelector(".form-control option[value='1: Object']");
+            wait.Until(driver => driver.FindElement(optionSelector).Displayed);
+
+            // Seçeneði bulma ve týklama
+            IWebElement option = driver.FindElement(optionSelector);
+            option.Click();
 
 
-                //IWebElement comboBox = driver.FindElement(By.CssSelector("select.form-control"));
 
+            /*
+                IWebElement dropdown = driver.FindElement(By.ClassName("form-control"));
 
-                //SelectElement selectElement = new SelectElement(comboBox);
-                //selectElement.SelectByText("General Sales");
+                // Dropdown elementini seçme
+                SelectElement select = new SelectElement(dropdown);
 
+                // Metne göre seçim yapma
+                select.SelectByText("General Sales"); // General Sales seçildi
+              */
 
+            //}
 
-            }
-
-            catch(Exception ex)
+            /*catch(Exception ex)
             {
-                driver.Quit();
-                Application.Exit(); 
+                
                 
             }
+            */
 
 
 
