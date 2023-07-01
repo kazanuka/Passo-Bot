@@ -33,7 +33,7 @@ namespace Passo_Bot
 
                 emailInput.SendKeys(textBox1.Text);
                 pass.SendKeys(textBox2.Text);
-
+                //birkaç deneme
                 MessageBox.Show("Captcha'yý Tamamladýktan Sonra 'Tamam' Tuþuna Basýn");//kullanýcýnýn captchayý tamamlamasýný bekle
                 button.Click();
 
