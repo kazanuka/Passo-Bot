@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System.CodeDom.Compiler;
 
@@ -22,10 +23,7 @@ namespace Passo_Bot
 
             IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://www.passo.com.tr/en/login");
-            /*
-            try
-            {
-              */  
+            
 
                 IWebElement emailInput = driver.FindElement(By.CssSelector("input[autocomplete='username']"));//kullanýcý adý ve þifreyi al
                 IWebElement pass = driver.FindElement(By.CssSelector("input[autocomplete='current-password']"));
@@ -39,9 +37,16 @@ namespace Passo_Bot
 
                 driver.Navigate().GoToUrl(textBox3.Text);
                 Thread.Sleep(3000);
-
+                /*
                 IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
                 jsExecutor.ExecuteScript("window.scrollBy(0, 500);");
+                */
+                IWebElement footer = driver.FindElement(By.TagName("footer"));
+                //int deltaY = footer.Location.Y;
+                new Actions(driver)
+                    .ScrollByAmount(0, 500)
+                    .Perform();
+
 
 
                 Thread.Sleep(4000);
@@ -56,52 +61,49 @@ namespace Passo_Bot
                 satin_al.Click();
 
 
-                //BU KISIMA KADAR KOD ÇALIÞIYOR 01.07.23
-                
-                
-                
+              
 
-                IJavaScriptExecutor javaN = (IJavaScriptExecutor)driver;
-                javaN.ExecuteScript("window.scrollBy(0, 500);");
+            //Bu kýsýmdan sonrasý deneysel.
+            /*
+            // Ýlk dropdown elementini bulmak için bekleme yap
+            By dropdownSelector1 = By.CssSelector("select.form-control.ng-valid.ng-dirty.ng-touched");
+            IWebElement dropdown1 = driver.FindElement(dropdownSelector1);
 
-
-                Thread.Sleep(1000);
-
-            // Dropdown elementini bulma
-            IWebElement dropdown = driver.FindElement(By.CssSelector(".form-control"));
-
-            // Dropdown'ý açmak için týkla
-            dropdown.Click();
+            // Ýlk dropdownu seçmek için týklama
+            dropdown1.Click();
 
             // Bekleme yap
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            By optionSelector = By.CssSelector(".form-control option[value='1: Object']");
-            wait.Until(driver => driver.FindElement(optionSelector).Displayed);
+            Thread.Sleep(1000); // 1 saniye bekleme
 
-            // Seçeneði bulma ve týklama
-            IWebElement option = driver.FindElement(optionSelector);
-            option.Click();
+            // Ýlk dropdown için seçeneði bulma ve týklama
+            By optionSelector1 = By.CssSelector("select.form-control.ng-valid.ng-dirty.ng-touched option[value='1: Object']");
+            IWebElement option1 = driver.FindElement(optionSelector1);
+            option1.Click();
 
+            // Ýkinci dropdown elementini bulmak için bekleme yap
+            By dropdownSelector2 = By.CssSelector("select.form-control[style='width: 27%']");
+            IWebElement dropdown2 = driver.FindElement(dropdownSelector2);
 
+            // Ýkinci dropdownu seçmek için týklama
+            dropdown2.Click();
 
-            /*
-                IWebElement dropdown = driver.FindElement(By.ClassName("form-control"));
+            // Bekleme yap
+            Thread.Sleep(1000); // 1 saniye bekleme
 
-                // Dropdown elementini seçme
-                SelectElement select = new SelectElement(dropdown);
-
-                // Metne göre seçim yapma
-                select.SelectByText("General Sales"); // General Sales seçildi
-              */
-
-            //}
-
-            /*catch(Exception ex)
-            {
-                
-                
-            }
+            // Ýkinci dropdown için seçeneði bulma ve týklama
+            By optionSelector2 = By.CssSelector("select.form-control[style='width: 27%'] option[value='1']");
+            IWebElement option2 = driver.FindElement(optionSelector2);
+            option2.Click();
             */
+
+
+
+
+
+
+
+
+
 
 
 
